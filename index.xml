@@ -22,17 +22,6 @@
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://linchupeng.github.io/about/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://linchupeng.github.io/about/</guid>
-      <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
-Hugo makes use of a variety of open source projects including:
- https://github.</description>
-    </item>
-    
-    <item>
       <title>再见-2018</title>
       <link>https://linchupeng.github.io/posts/bye-2018/</link>
       <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
@@ -50,6 +39,18 @@ Hugo makes use of a variety of open source projects including:
       <guid>https://linchupeng.github.io/posts/bye-2017/</guid>
       <description>&lt;p&gt;&lt;strong&gt;风雨里像个大人，阳关下像个孩子，再见 2017。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;生活过得勉勉强强，没房，也没车。不知不觉一把材米油盐也成为压力了，没能成为当初所向往的的人。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>很高兴认识你</title>
+      <link>https://linchupeng.github.io/about/</link>
+      <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://linchupeng.github.io/about/</guid>
+      <description>关于我 94年人，被外行贴了「程序员」标签，其实只是一枚烂大街的码仔，主要方向是服务端开发。目前还没远大的抱负，也没什么成就，只想好好赚钱，提高生活水平。 很开心能在这行工作，现在是一枚后端渣男，曾经努力想做一枚 Androider，奈何没人要，怒转 PHP。现在也写写 Go 和 Python 喜欢 Coding ，水平很菜，但却不甘平凡，喜欢编程带来的挑战和成长。
+喜欢简洁的东西，有点强迫症，可能会为一张壁纸满世界找好几天，但也可能一张壁纸就可以用好几年。喜欢 Android ，IOS，其实是喜欢手机，超喜欢手机开箱撕膜那瞬间。
+常逛 WP7吧，知乎，头条，最近喜欢打王者（很遗憾没有上王者）(2020年现在已经是嘴强王者)，对事情有自己看法，喜欢自己去折腾东西，但往往有拖延症，简单闷骚，喜欢跟有想法的人在一起，不喜欢没有上进心的人。
+个人博客  博客从 jekyll =&amp;gt; Hexo =&amp;gt; Hugo(简直折腾) 基于Archie主题 简单不失简约，主要记录自己一些想法，和学到的知识，写博客目的主要是喜欢有自己小空间，并且提醒自己去坚持做一件事。 由于本人从业经验尚浅，很多内容可能会有考虑欠缺，甚至误人子弟。但我还是希望能将文章发布出来，被别人批评也是一种进步，总比自己闭门造车好，更何况其实也没人看。  联系我  博客 : linchupeng.com Email : chupeng.lin@qq.com Github : linchupeng  开源作品  你的天气 （很遗憾已经没有维护）  我的朋友  张少杰  </description>
     </item>
     
     <item>
