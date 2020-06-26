@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Mysql 查询语句执行过程 - ChipLin</title><meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta property="og:description" content="" />
+	<meta name="twitter:description" content="" />
+	<meta name="description" content="" />
+	<meta name="description" content="" />
+
+	<meta property="og:title" content="Mysql 查询语句执行过程 | ChipLin" />
+	<meta name="twitter:title" content="Mysql 查询语句执行过程 | ChipLin" />
+
+	<meta property="og:image" content=""/>
+	<meta itemprop="name" content="Mysql 查询语句执行过程 | ChipLin" />
+	<meta name="application-name" content="Mysql 查询语句执行过程 | ChipLin" />
+	<meta property="og:site_name" content="" />
+	<meta property="og:title" content="Mysql 查询语句执行过程" />
+<meta property="og:description" content="解密 SELECT 子句执行顺序
+我们知道，数据库查询是数据库的最主要功能之一，作为一枚 PHPer 每天都会跟数据库打交道，比如MYSQL 整天的 CURD，其实应该去了解 SELECT 执行过程。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://linchupeng.com/posts/mysql/" />
+<meta property="article:published_time" content="2018-02-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-02-05T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql 查询语句执行过程"/>
+<meta name="twitter:description" content="解密 SELECT 子句执行顺序
+我们知道，数据库查询是数据库的最主要功能之一，作为一枚 PHPer 每天都会跟数据库打交道，比如MYSQL 整天的 CURD，其实应该去了解 SELECT 执行过程。"/>
+
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://linchupeng.com/css/main.css" /><link rel="stylesheet" type="text/css" href="https://linchupeng.com/css/dark.css" media="(prefers-color-scheme: dark)" />
+</head><body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://linchupeng.com/">ChipLin</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Posts</a>
+		
+		<a href="/about">About</a>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Mysql 查询语句执行过程</h1>
+			<div class="meta">Posted on 2018-02-05</div>
+		</div>
+		
+
+		<section class="body">
+			<p><strong>解密 SELECT 子句执行顺序</strong></p>
+<p>我们知道，数据库查询是数据库的最主要功能之一，作为一枚 PHPer 每天都会跟数据库打交道，比如MYSQL 整天的 CURD，其实应该去了解 SELECT 执行过程。</p>
+<blockquote>
+<p>下面是执行查询的步骤编号</p>
+</blockquote>
+<p>(8) SELECT
+(1) FROM
+(3) JOIN
+(2) ON
+(4) WHERE
+(5) GROUP BY
+(6) WITH
+(7) HAVING
+(9) DISTINCT
+(10) ORDER BY
+(11) LIMIT</p>
+<p>上面一共有11个步骤，<strong>最先执行的是 FROM 操作，最后执行的是LIMIT 操作</strong>。每个操作都会产生一张虚拟表，这些虚拟表都是对用户透明的，只有最后一步操作产生的虚拟表才会返回给用户。如果没有在查询没有指定子句，则跳过相应的步骤。</p>
+<p>下面创建两张表，通过一个查询示例来描述 SELECT 子句查询的逻辑步骤。</p>
+<h2 id="students-表">students 表</h2>
+<table>
+<thead>
+<tr>
+<th>student_id</th>
+<th>student_name</th>
+<th>sex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Jay</td>
+<td>男</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Andy</td>
+<td>女</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Tom</td>
+<td>男</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Rose</td>
+<td>女</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scores-表">scores 表</h2>
+<table>
+<thead>
+<tr>
+<th>score_id</th>
+<th>student_id</th>
+<th>subject</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>语文</td>
+<td>70</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>数学</td>
+<td>80</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>英语</td>
+<td>50</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>语文</td>
+<td>70</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>数学</td>
+<td>50</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+<td>英语</td>
+<td>90</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td>语文</td>
+<td>80</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3</td>
+<td>数学</td>
+<td>50</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>英语</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> st.student_name,
+        <span style="color:#66d9ef">sum</span>(sc.score <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">60</span>) <span style="color:#66d9ef">AS</span> fail_subjects
+<span style="color:#66d9ef">FROM</span> students <span style="color:#66d9ef">AS</span> st
+<span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">JOIN</span> scores <span style="color:#66d9ef">AS</span> sc
+    <span style="color:#66d9ef">ON</span> st.student_id <span style="color:#f92672">=</span> sc.student_id
+<span style="color:#66d9ef">WHERE</span> st. sex <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;男&#39;</span>
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>  st.student_name
+<span style="color:#66d9ef">HAVING</span> fail_subjects <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span>  fail_subjects <span style="color:#66d9ef">DESC</span> <span style="color:#66d9ef">limit</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>;
+</code></pre></div><p>执行结果：</p>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT9.png" alt="查询结果"></p>
+<h2 id="1-from操作">1） FROM操作</h2>
+<p>上面的 SQL 语句第一步会对 FROM 子句前后的两张表执行 <strong>笛卡儿积</strong> 操作,产生虚拟表 VT.1</p>
+<blockquote>
+<p><strong>FROM students AS st JOIN scores as sc</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT1.png" alt="VT.1"></p>
+<p>( Wait ？什么是笛卡儿积？）</p>
+<p>笛卡儿积：是指在数学中，两个集合 X 和 Y 的笛卡尓积,表示为 X * Y 。
+比如 集合 A{ a1 , a2 , a3 } 集合 B { b1 , b2 } 则两个集合的笛卡尔积为 { (a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2) }。</p>
+<p>回到刚才虚拟表 VT.1 中，如果 FROM 子句前面的表中包含 a 行数据，FROM 子句后面包含 b 行数据，那么虚拟表 VT.1中将包含 a*b 行数据。</p>
+<h2 id="2-on-过滤器">2） ON 过滤器</h2>
+<p>SELECT 查询一共有 3 个查询过滤过程，ON , WHERE ,HAVING 。ON是最先执行的过滤过程。根据虚拟表 VT.1 ，过滤条件为：</p>
+<blockquote>
+<p><strong>ON st.student_id = sc.student_id</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT2.png" alt="VT.2"></p>
+<h2 id="3-添加外部行">3） 添加外部行</h2>
+<p>这一步只有在连接类型为 JOIN 才会生效，添加外部行顾名思义就是在虚拟表 VT.2 基础上添加保留表（students）中被过滤掉的数据，非保留（scores）中的数据被赋予 NULL 值，生成虚拟表 VT.3</p>
+<blockquote>
+<p><strong>students AS st LEFT JOIN scores as sc</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT3.png" alt="VT.3"></p>
+<p><strong>注：</strong> ON 和 WHERE 的最大区别在于针对OUTER JOIN ，ON 可以把移除的行再次添加回来，而where的移除的最终的。
+比如：Rose 学生在虚拟表 VT.2中没有数据而被过滤，在此步骤我们添加了 LEFT JOIN 因此 Rose被作为外部行本被添加到虚拟表 VT.3 中 ，将非保留表（scores）中的数据赋予 NULL 值。</p>
+<h2 id="4-where-过滤器">4） WHERE 过滤器</h2>
+<p>对虚拟表 VT.3 进行 WHERE 过滤查询，只有符合 WHERE 条件才会输出到虚拟表 VT.4 中</p>
+<blockquote>
+<p><strong>WHERE st.sex = ‘男’</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT4.png" alt="VT.4"></p>
+<p><strong>注：</strong> 执行 WHERE 条件时，有两种不被允许。</p>
+<ul>
+<li>数据还未被分组，禁止使用 WHERE = MIN ( COL ) 此类统计形式。
+eg.
+SELECT student_id, COUNT(student_id)
+FROM scores
+WHERE COUNT(student_id) &gt; 2;
+<strong>ERROR 1111 (HY000): Invalid use of group function</strong></li>
+<li>还没进行列操作，禁止使用 SELECT 别名 。
+eg.
+SELECT score_id AS sid, student_id AS std
+FROM scores
+WHERE std = 1;
+<strong>ERROR 1054 (42S22): Unknown column ‘std’ in ‘where clause’</strong></li>
+</ul>
+<h2 id="5-分组-group-by">5） 分组 GROUP BY</h2>
+<p>将虚拟表 VT.4 根据 st.student_id 字段进行分组查询 得到虚拟表 VT.5</p>
+<blockquote>
+<p><strong>GROUP BY st.student_name</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT5.png" alt="VT.5"></p>
+<h2 id="6-应用-with">6） 应用 WITH</h2>
+<p>如果指定了 ROULLUP 选项，将会创建一个额外的记录添加到虚拟表 VT.5 最后生成虚拟表 VT.6，由于上面的 SQL 语句没有涉及 ，所以就跳过此步骤。</p>
+<h2 id="7-having-过滤器">7） HAVING 过滤器</h2>
+<p>这是SELECT 执行语句最后的过滤过程了 ，HAVING 会对 GROUP BY 条件进行筛选，他返回的是一个游标，而不是一个表，所以在 WHERE 中不可以使用SELECT 中的别名，而 HAVING 却可以使用 .</p>
+<blockquote>
+<p><strong>HAVING fail_subjects &gt; 1</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT6.png" alt="VT.6"></p>
+<h2 id="8处理-select-列表">8）处理 SELECT 列表</h2>
+<p>通常我们首先写的就是 SELECT ，但其实直到步骤 8 才真正处理。对示例的 SQL 语句，其 SELECT 部分为 :</p>
+<blockquote>
+<p><strong>SELECT st.student_name , sum(sc.score &lt; 60) AS fail_subjects</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT6.png" alt="VT.7"></p>
+<h2 id="9应用-distinct-子句">9）应用 DISTINCT 子句</h2>
+<p>应用 DISTINCT 子句，VT.7 中移除相同的行，生成 虚拟表 VT.8。事实上如果应用了 GROUP BY 子句那么DISTINCT 是多余的，原因同样在于，分组的时候是将列中唯一的值分成一组，同时只为每一组返回一行记录，那么所以的记录都将是不相同的。
+示例的 SQL 语句没有指定 DISTINCT 子句，因此跳过此步骤。</p>
+<h2 id="10应用-order-by-排序">10）应用 ORDER BY 排序</h2>
+<p>根据 ORDER BY 指定条件对上一步骤生成的虚拟表 VT.8进行排序，返回新虚拟表。</p>
+<blockquote>
+<p><strong>ORDER BY fail_subjects DESC</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT8.png" alt="VT.8"></p>
+<p><strong>注:</strong> SQL 是基于集合的理论的，集合不会预先对他的行排序，它只是成员的逻辑集合，从集合去除期望的子集合，并不一定是有序的。所以要是想有序的输出行记录，则必须使用 ORDER BY 排序，排序是很需要成本的，除非你必须要排序，否则最好不要指定order by。</p>
+<h2 id="11limit-子句">11）LIMIT 子句</h2>
+<p>从上个步骤生成的虚拟表中选出从指定位置开始的指定行数据，生成虚拟表 VT.9对于没有选定 ORDER BY 排序的 LIMIT 子句，其结果也可能是无序的，因此 LIMIT 子句通常和 ORDER BY 子句连用。</p>
+<blockquote>
+<p><strong>LIMIT 0,1</strong></p>
+</blockquote>
+<p><img src="https://hexo-1258101987.cos.ap-guangzhou.myqcloud.com/VT9.png" alt="VT.9"></p>
+<p>理解查询执行顺序 对于我这种新手是很有必要的， 日常工作编写 SQL 语句， 才会更得心应手 ，逻辑查询只是描述了应该产生什么样的结果。至于怎么解析，怎么运行 也是我接下去要去学习的。</p>
+<p><strong>Happy Reading !!!</strong>
+s</p>
+<blockquote>
+<p>写于 2018/2/5 下午 公司 加油 GO！！！！</p>
+</blockquote>
+		</section>
+
+		<div class="post-tags">
+			
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+<hr>⚡️
+	2020  © ChipLin|岁月安好 你也一样  
+</footer>
+
+
+</div>
+    </body>
+</html>

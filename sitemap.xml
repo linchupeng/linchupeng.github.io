@@ -3,46 +3,61 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://linchupeng.github.io/</loc>
+    <loc>https://linchupeng.com/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/archives/</loc>
+    <loc>https://linchupeng.com/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/posts/</loc>
+    <loc>https://linchupeng.com/posts/</loc>
     <lastmod>2019-01-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/posts/bye-2018/</loc>
+    <loc>https://linchupeng.com/posts/bye-2018/</loc>
     <lastmod>2019-01-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/posts/bye-2017/</loc>
+    <loc>https://linchupeng.com/posts/audition/</loc>
+    <lastmod>2018-07-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linchupeng.com/posts/ioc-di/</loc>
+    <lastmod>2018-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linchupeng.com/posts/mysql/</loc>
+    <lastmod>2018-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://linchupeng.com/posts/bye-2017/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/about/</loc>
+    <loc>https://linchupeng.com/about/</loc>
     <lastmod>2017-09-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/posts/hello-blog/</loc>
+    <loc>https://linchupeng.com/posts/hello-blog/</loc>
     <lastmod>2017-09-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/categories/</loc>
+    <loc>https://linchupeng.com/categories/</loc>
   </url>
   
   <url>
-    <loc>https://linchupeng.github.io/tags/</loc>
+    <loc>https://linchupeng.com/tags/</loc>
   </url>
   
 </urlset>

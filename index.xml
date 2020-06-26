@@ -2,51 +2,81 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ChipLin</title>
-    <link>https://linchupeng.github.io/</link>
+    <link>https://linchupeng.com/</link>
     <description>Recent content on ChipLin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© ChipLin</copyright>
     <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://linchupeng.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://linchupeng.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>https://linchupeng.github.io/archives/</link>
+      <link>https://linchupeng.com/archives/</link>
       <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://linchupeng.github.io/archives/</guid>
+      <guid>https://linchupeng.com/archives/</guid>
       <description></description>
     </item>
     
     <item>
       <title>再见-2018</title>
-      <link>https://linchupeng.github.io/posts/bye-2018/</link>
+      <link>https://linchupeng.com/posts/bye-2018/</link>
       <pubDate>Wed, 02 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://linchupeng.github.io/posts/bye-2018/</guid>
+      <guid>https://linchupeng.com/posts/bye-2018/</guid>
       <description>&lt;p&gt;&lt;strong&gt;人生苦短，2019年 想做一个酷酷的码仔。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;18 年总感觉比 17 年节奏更快点，我以为岁月可以像细水那样流长，我尝试去把生活过慢得一点，去领悟身边的人和事物，可岁月这家伙要走时候总是不跟我打声招呼。&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>毕业一年面试之旅</title>
+      <link>https://linchupeng.com/posts/audition/</link>
+      <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://linchupeng.com/posts/audition/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;永远相信美好的事情即将发生。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;已经两三月没更新博客了，这两个月经历了离职，面试，入职，总的来说感触很深，所以也打算记录下这段经历。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>强大的依赖注入和控制反转</title>
+      <link>https://linchupeng.com/posts/ioc-di/</link>
+      <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://linchupeng.com/posts/ioc-di/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;有点唬人却实力派的 IOC/DI&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;最近大佬说下个项目要用 Laravel 框架，所以就开始学 Laravel 。之前只是大概扫了下文档，觉得它很新颖，不管是PHP新特性，还是设计思想都用到一个新高度，以至于学起来有些费力，其实归根结底还是我思想陈旧，用过去的知识来看问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mysql 查询语句执行过程</title>
+      <link>https://linchupeng.com/posts/mysql/</link>
+      <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://linchupeng.com/posts/mysql/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;解密 SELECT 子句执行顺序&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们知道，数据库查询是数据库的最主要功能之一，作为一枚 PHPer 每天都会跟数据库打交道，比如MYSQL 整天的 CURD，其实应该去了解 SELECT 执行过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>再见-2017</title>
-      <link>https://linchupeng.github.io/posts/bye-2017/</link>
+      <link>https://linchupeng.com/posts/bye-2017/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://linchupeng.github.io/posts/bye-2017/</guid>
+      <guid>https://linchupeng.com/posts/bye-2017/</guid>
       <description>&lt;p&gt;&lt;strong&gt;风雨里像个大人，阳关下像个孩子，再见 2017。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;生活过得勉勉强强，没房，也没车。不知不觉一把材米油盐也成为压力了，没能成为当初所向往的的人。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>很高兴认识你</title>
-      <link>https://linchupeng.github.io/about/</link>
+      <link>https://linchupeng.com/about/</link>
       <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://linchupeng.github.io/about/</guid>
+      <guid>https://linchupeng.com/about/</guid>
       <description>关于我 94年人，被外行贴了「程序员」标签，其实只是一枚烂大街的码仔，主要方向是服务端开发。目前还没远大的抱负，也没什么成就，只想好好赚钱，提高生活水平。 很开心能在这行工作，现在是一枚后端渣男，曾经努力想做一枚 Androider，奈何没人要，怒转 PHP。现在也写写 Go 和 Python 喜欢 Coding ，水平很菜，但却不甘平凡，喜欢编程带来的挑战和成长。
 喜欢简洁的东西，有点强迫症，可能会为一张壁纸满世界找好几天，但也可能一张壁纸就可以用好几年。喜欢 Android ，IOS，其实是喜欢手机，超喜欢手机开箱撕膜那瞬间。
 常逛 WP7吧，知乎，头条，最近喜欢打王者（很遗憾没有上王者）(2020年现在已经是嘴强王者)，对事情有自己看法，喜欢自己去折腾东西，但往往有拖延症，简单闷骚，喜欢跟有想法的人在一起，不喜欢没有上进心的人。
@@ -55,10 +85,10 @@
     
     <item>
       <title>为什么写起博客</title>
-      <link>https://linchupeng.github.io/posts/hello-blog/</link>
+      <link>https://linchupeng.com/posts/hello-blog/</link>
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://linchupeng.github.io/posts/hello-blog/</guid>
+      <guid>https://linchupeng.com/posts/hello-blog/</guid>
       <description>&lt;p&gt;&lt;strong&gt;博客这种东西跟经典一样，不会随着时间而褪色，反而更显珍贵&lt;/strong&gt;  。&lt;/p&gt;
 &lt;p&gt;早之前时常看到别人的博文，总会突发奇想是否自己也搭建个博客，只是自己的拖延症已经无可救药了，现在想搭建的时候 ，博客也已经差不多走到了末路。&lt;/p&gt;</description>
     </item>
